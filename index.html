@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havells India Ltd — Sales Forecasting Hub</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind-like modern css resetting and custom styling in index.css -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Chart.js CDN for beautiful interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="theme-dark">
+    <!-- Main App Wrapper -->
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <span>ForecastHub</span>
+                </div>
+                <span class="badge">Havells Ltd</span>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <button class="menu-item active" data-target="tab-dashboard">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="menu-item" data-target="tab-evaluation">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle x="12" y="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Model Analytics</span>
+                </button>
+                <button class="menu-item" data-target="tab-forecast">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    <span>3-Year Projection</span>
+                </button>
+                <button class="menu-item" data-target="tab-sandbox">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    <span>What-If Sandbox</span>
+                </button>
+                <button class="menu-item" data-target="tab-docs">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Report & Insights</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-info">
+                    <span class="user-name">Internship Project</span>
+                    <span class="user-role">Screener.in Data Source</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Navigation Bar -->
+            <header class="top-nav">
+                <div class="header-title">
+                    <h1 id="page-title">Sales Forecasting Dashboard</h1>
+                    <p class="subtitle">Havells India Ltd (NSE: HAVELLS) Financial Modeling</p>
+                </div>
+                <div class="header-actions">
+                    <div class="theme-toggle">
+                        <button id="dark-theme-btn" class="active" title="Dark Mode">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </button>
+                        <button id="light-theme-btn" title="Light Mode">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" y="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic Tab Content Wrapper -->
+            <div class="tab-content">
+                
+                <!-- Tab: Dashboard -->
+                <section id="tab-dashboard" class="content-section active">
+                    <!-- KPI Cards Grid -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card glass">
+                            <div class="kpi-icon-wrapper sales">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Latest Annual Sales (FY2026)</span>
+                                <span class="kpi-value">₹22,528 Cr</span>
+                                <span class="kpi-trend positive">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                                    <span>+3.44% YoY</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glass">
+                            <div class="kpi-icon-wrapper cagr">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">10-Year CAGR</span>
+                                <span class="kpi-value">15.6%</span>
+                                <span class="kpi-trend positive">
+                                    <span>Steady Compound Growth</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glass">
+                            <div class="kpi-icon-wrapper growth">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Avg YoY Growth Rate</span>
+                                <span class="kpi-value">16.2%</span>
+                                <span class="kpi-trend positive">
+                                    <span>Consumer Durable Sector Leader</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glass">
+                            <div class="kpi-icon-wrapper dev">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">10-Year Total Expansion</span>
+                                <span class="kpi-value">267.5%</span>
+                                <span class="kpi-trend positive">
+                                    <span>FY2017 to FY2026</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Charts Container -->
+                    <div class="chart-layout-grid">
+                        <div class="chart-card glass span-two">
+                            <div class="chart-header">
+                                <h3>Annual Sales & Growth Trajectory</h3>
+                                <div class="chart-actions">
+                                    <button class="btn btn-sm btn-outline active" id="btn-annual-sales">Sales Amount</button>
+                                    <button class="btn btn-sm btn-outline" id="btn-annual-growth">YoY Growth %</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chart-annual-sales"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glass">
+                            <div class="chart-header">
+                                <h3>Quarterly Seasonality</h3>
+                                <p class="chart-subtitle">Recent 10 Quarters Trend (Cr)</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chart-quarterly"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Model Evaluation -->
+                <section id="tab-evaluation" class="content-section">
+                    <div class="alert warning">
+                        <div class="alert-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Critical Diagnostic: Feature Target Data Leakage Detected in Notebook</h4>
+                            <p>The Linear Regression model in the original notebook reports a perfect **0.00% Mean Absolute Percentage Error (MAPE)**. This occurs due to data leakage: the <code>Rolling_Mean</code> feature was computed including the current year's sales. Since the model utilizes <code>Sales_Lag1</code>, <code>Sales_Lag2</code>, and <code>Rolling_Mean</code>, it learns the algebraic relationship: <code>Sales_Cr = 3 * Rolling_Mean - Sales_Lag1 - Sales_Lag2</code>. Below, we evaluate correct models versus leaked models.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-layout-grid">
+                        <div class="chart-card glass">
+                            <div class="chart-header">
+                                <h3>Model Error Metrics Comparison</h3>
+                                <p class="chart-subtitle">MAPE (%) - Lower is Better</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chart-model-mape"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glass">
+                            <div class="chart-header">
+                                <h3>Root Mean Squared Error (RMSE)</h3>
+                                <p class="chart-subtitle">In ₹ Crores (Lower is Better)</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chart-model-rmse"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Table -->
+                    <div class="table-card glass mt-6">
+                        <div class="table-header">
+                            <h3>Model Performance Metrics Table</h3>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model Name</th>
+                                        <th>MAE (₹ Cr)</th>
+                                        <th>RMSE (₹ Cr)</th>
+                                        <th>MAPE (%)</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="leaked-row">
+                                        <td class="font-bold">Linear Regression (Leaked)</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0.00%</td>
+                                        <td><span class="pill pill-danger">Leaked Feature</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold">XGBoost Regressor</td>
+                                        <td>3,594.58</td>
+                                        <td>3,614.07</td>
+                                        <td>16.20%</td>
+                                        <td><span class="pill pill-success">Valid Model</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold">Random Forest Regressor</td>
+                                        <td>4,375.20</td>
+                                        <td>4,391.23</td>
+                                        <td>19.73%</td>
+                                        <td><span class="pill pill-success">Valid Model</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold">Facebook Prophet</td>
+                                        <td>10,855.76</td>
+                                        <td>10,907.38</td>
+                                        <td>48.94%</td>
+                                        <td><span class="pill pill-success">Valid Model</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: 3-Year Projection -->
+                <section id="tab-forecast" class="content-section">
+                    <div class="chart-layout-grid">
+                        <div class="chart-card glass span-two">
+                            <div class="chart-header">
+                                <h3>Havells India Ltd — Forecast Chart (2018–2025 vs Predicted 2026–2028)</h3>
+                                <div class="chart-actions">
+                                    <button class="btn btn-sm btn-outline active" id="btn-show-prophet">Prophet Model (Conservative)</button>
+                                    <button class="btn btn-sm btn-outline" id="btn-show-lr">Linear Regression (Aggressive)</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chart-sales-forecast"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Forecast Cards -->
+                        <div class="forecast-summary-card glass">
+                            <h3>Forecast Summary Table</h3>
+                            <div class="forecast-list">
+                                <div class="forecast-item header">
+                                    <span>Year</span>
+                                    <span>Prophet Forecast</span>
+                                    <span>Linear Reg. Forecast</span>
+                                </div>
+                                <div class="forecast-item">
+                                    <span class="year">2026</span>
+                                    <span class="val prophet">₹17,146 Cr <small>(±8% range)</small></span>
+                                    <span class="val lr">₹24,186 Cr</span>
+                                </div>
+                                <div class="forecast-item">
+                                    <span class="year">2027</span>
+                                    <span class="val prophet">₹18,837 Cr <small>(±8% range)</small></span>
+                                    <span class="val lr">₹26,075 Cr</span>
+                                </div>
+                                <div class="forecast-item">
+                                    <span class="year">2028</span>
+                                    <span class="val prophet">₹21,357 Cr <small>(±8% range)</small></span>
+                                    <span class="val lr">₹27,964 Cr</span>
+                                </div>
+                            </div>
+                            <div class="forecast-notes mt-4">
+                                <p><strong>Model Insight:</strong> Facebook Prophet handles seasonal fluctuations (captured via quarterly records) and yields a more conservative trend forecast. In contrast, Linear Regression extrapolates a strong linear CAGR slope, projecting sales of up to ₹27,964 Cr by FY2029.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: What-If Sandbox -->
+                <section id="tab-sandbox" class="content-section">
+                    <div class="sandbox-layout">
+                        <!-- Controls Sidebar -->
+                        <div class="sandbox-controls glass">
+                            <h3>Projection Parameters</h3>
+                            <p class="control-desc">Customize the parameters below to compute dynamic sales projections in real time.</p>
+                            
+                            <div class="control-group">
+                                <label for="sandbox-growth-rate">Annual Target Growth Rate (%)</label>
+                                <div class="slider-container">
+                                    <input type="range" id="sandbox-growth-rate" min="-10" max="40" value="15.6" step="0.1">
+                                    <span class="slider-value" id="val-growth-rate">15.6%</span>
+                                </div>
+                                <span class="field-hint">Defaults to historical 10-Yr CAGR (15.6%)</span>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="sandbox-base-sales">Base Year Sales (FY2026 - Cr)</label>
+                                <input type="number" id="sandbox-base-sales" value="22527.77" step="100">
+                            </div>
+
+                            <div class="control-group">
+                                <label for="sandbox-years">Projection Span (Years)</label>
+                                <select id="sandbox-years">
+                                    <option value="3" selected>3 Years (up to FY2029)</option>
+                                    <option value="5">5 Years (up to FY2031)</option>
+                                    <option value="10">10 Years (up to FY2036)</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary btn-block" id="btn-reset-sandbox">Reset to Defaults</button>
+                        </div>
+
+                        <!-- Sandbox Outputs -->
+                        <div class="sandbox-outputs span-two">
+                            <div class="chart-card glass">
+                                <div class="chart-header">
+                                    <h3>Interactive Custom Sales Projection</h3>
+                                    <p class="chart-subtitle">Interactive modeling tool based on your custom inputs</p>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="chart-sandbox"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- Dyn Metric Cards -->
+                            <div class="kpi-grid mt-4">
+                                <div class="kpi-card glass compact">
+                                    <div class="kpi-data">
+                                        <span class="kpi-label">Projected Sales (Final Year)</span>
+                                        <span class="kpi-value" id="sandbox-metric-final-sales">₹34,815 Cr</span>
+                                    </div>
+                                </div>
+                                <div class="kpi-card glass compact">
+                                    <div class="kpi-data">
+                                        <span class="kpi-label">Net Sales Added</span>
+                                        <span class="kpi-value" id="sandbox-metric-added-sales">₹12,287 Cr</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Docs & Insights -->
+                <section id="tab-docs" class="content-section">
+                    <div class="docs-container glass">
+                        <h2>📊 Havells India Ltd Sales Forecasting Project Summary</h2>
+                        <hr class="divider">
+                        
+                        <div class="docs-section">
+                            <h3>1. Project Background</h3>
+                            <p>This analytics interface represents an internship project evaluating real industry financial statements for <strong>Havells India Ltd (NSE: HAVELLS)</strong>. The objective was to predict sales for the next three years using a combination of traditional linear models and machine learning models.</p>
+                            <p>Data was obtained from public databases via Screener.in, containing two core subsets:</p>
+                            <ul>
+                                <li><strong>Annual Sales:</strong> FY2017 to FY2026 (10 years)</li>
+                                <li><strong>Quarterly Sales:</strong> Dec 2023 to Mar 2026 (10 quarters)</li>
+                            </ul>
+                        </div>
+
+                        <div class="docs-section">
+                            <h3>2. Explored ML Models</h3>
+                            <ul>
+                                <li><strong>Linear Regression:</strong> Explores simple temporal trends. Extrapolates historical growth forward linearly.</li>
+                                <li><strong>Facebook Prophet:</strong> Tailored time-series forecasting model developed by Meta. Captures seasonality trends and provides lower/upper confidence bounds.</li>
+                                <li><strong>Random Forest & XGBoost Regressors:</strong> Ensemble decision tree models capturing non-linear interactions and lag relationships.</li>
+                            </ul>
+                        </div>
+
+                        <div class="docs-section">
+                            <h3>3. Core Findings & Insights</h3>
+                            <ol>
+                                <li><strong>Growth Durability:</strong> Havells has maintained a high-growth rate with an actual CAGR of <strong>15.6%</strong> over the past decade. The only YoY sales dip occurred during FY2020 (-6.3%) due to pandemic disruptions.</li>
+                                <li><strong>Target Data Leakage Analysis:</strong> The rolling average calculation in the original training script incorporated current-year sales, creating a perfect prediction model in validation but failing in external extrapolation. To resolve this, forecasts were retrained purely on absolute temporal sequence variables.</li>
+                                <li><strong>Prophet vs. Linear Regression:</strong> Prophet predicts sales growing to ₹21,357 Cr by FY2029, whereas Linear Regression projects ₹27,964 Cr. Prophet is likely more reliable as it avoids scaling outliers and dampens extreme trends.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+                <p>&copy; 2026 Havells Sales Forecasting Project Dashboard. Data source: Screener.in.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>
